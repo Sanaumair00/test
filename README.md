@@ -1,19 +1,7 @@
 # test
 ANDigital Test
 
-Html
-basic html
-meta tags
-link js and css file
-add input for search/expore and nearplaces
-add explore and search button
+this application allow user to search and explore nearest place(it take browser current geolocation)
+if user denies and browser doesn't support geo location, user can still search using categories like sushi, italian and English
 
-
-js
-creat four square app got client id secret and version.
-created gloabal App. namespaceobject
-set client id secret and version in that object.
-
-css
-Layout style
-
+user can also specify location to explore or search about particular thing.
