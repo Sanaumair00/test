@@ -1,5 +1,10 @@
 $(document).ready(function(){
-App.initApp();
+
+
+	
+	//App.getLocation();
+	//alert(App.flag+" , "+App.locationLatLong);
+	App.initApp();	
 });
 
 var App ={
@@ -10,7 +15,7 @@ var App ={
 		secret:"YMNU2MYPGGBTJZIEXASW01GP5K2YTWIJBXAWYCI2RQVDPALL"
 	},
 	version : "20150825",
-	locationLatLong : "40.7,-74",
+	locationLatLong : "",
 	flag: 0
 	
 };
@@ -39,47 +44,11 @@ var App ={
 
 	//alert(getUrl("https://api.foursquare.com/v2/venues/"));
 	App.initApp =function(){	
-		
+		getLocation();
 		var generateUrl = getUrl("https://api.foursquare.com/v2/venues/");
 		$("#main-search-button").click(function(event){
 			event.preventDefault();
-				var query1= $("input#srchXplore").val();
-				var nearplace1 =$("input#near").val();
-				
-				var generateUrl = getUrl("https://api.foursquare.com/v2/venues/");
-
-				var getSearchUrl =generateUrl("search",query1,nearplace1);
-				console.log(getSearchUrl);
-				var str ="";
-				//
-				
-				$("ul#list").remove();
-				
-				$.ajax({
-					url: getSearchUrl,
-					
-					//url:"errorURl",
-					success: function(result){
-						setTimeout(function(){
-								$("#loading").hide();
-						},1000);
-						$.each( result.response.venues, function( i, value ) {
-							
-							if(value.url!= undefined){
-								str+="<li><a href='"+value.url+"' target='_blank'>"+ value.name+"</a></li>";
-							}else{
-								str+="<li>"+ value.name+"</li>";
-							}
-							
-						});
-
-						$("nav#results").html("<ul id='list'>"+str+"</ul>");
-					},
-					error: function(e){
-						alert("error");
-					}
-				});
-		
+			getSearchData();
 			
 			//
 		});
@@ -91,7 +60,6 @@ var App ={
 			var nearplace1 =$("input#near").val();
 			
 			var getXploreUrl =generateUrl("explore",query1,nearplace1);
-			console.log(getXploreUrl);
 			var str ="";
 			$("ul#list").remove();
 			
@@ -146,10 +114,93 @@ var App ={
 	
 	}
 	
+	function getLocation() {
+		
+		if (navigator.geolocation) {		
+			navigator.geolocation.getCurrentPosition(setPosition, showError);		
+		} else { 
+			$("#demo").html("Geolocation is not supported by this browser, explore near place.");
+			
+		}
+		
+		setTimeout(function(){
+			$("#loading").hide();
+			$("#demo").show();					
+		},1000);
+		//$("#demo").show("slow");
+	}
 
+	function setPosition(position) {
+		
+		App.locationLatLong = position.coords.latitude +","+ position.coords.longitude;
+		getSearchData();
+			//App.initApp();	
+	}
 
-	
-	
+	function showError(error) {
+		
+		switch(error.code) {
+			case error.PERMISSION_DENIED:
+				$("#demo").html( "User denied the request for Geolocation, explore near places.");
+					
+				break;
+			case error.POSITION_UNAVAILABLE:
+				$("#demo").html("Location information is unavailable, explore near place.");
+				break;
+			case error.TIMEOUT:
+				$("#demo").html( "The request to get user location timed out, explore near place.");
+				break;
+			case error.UNKNOWN_ERROR:
+				$("#demo").html("An unknown error occurred, explore near place.");
+				break;
+				
+				
+		}
+		setTimeout(function(){
+			$("#loading").hide();
+			$("#demo").show();					
+		},1000);
+		
+	}
+	function getSearchData(generateUrl){
+		var query1= $("input#srchXplore").val();
+				var nearplace1 =$("input#near").val();
+				
+				var generateUrl = getUrl("https://api.foursquare.com/v2/venues/");
+
+				var getSearchUrl =generateUrl("search",query1,nearplace1);
+				var str ="";
+				//
+				
+				$("ul#list").remove();
+				
+				$.ajax({
+					url: getSearchUrl,
+					
+					//url:"errorURl",
+					success: function(result){
+						setTimeout(function(){
+								$("#loading").hide();
+						},1000);
+						$.each( result.response.venues, function( i, value ) {
+							
+							if(value.url!= undefined){
+								str+="<li><a href='"+value.url+"' target='_blank'>"+ value.name+"</a></li>";
+							}else{
+								str+="<li>"+ value.name+"</li>";
+							}
+							
+						});
+
+						$("nav#results").html("<ul id='list'>"+str+"</ul>");
+					},
+					error: function(e){
+						alert("error");
+					}
+				});
+		
+		
+	}
 
 		//alert(urlSubstr1);
 	
