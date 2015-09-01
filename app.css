@@ -137,6 +137,15 @@ input#near{
 	margin-left:1rem;
 	width: 20rem;
 }
+p#demo{
+	padding-top: 0.5rem;
+	padding-left: 2rem;
+	color: red;
+	font-weight: bold;
+	border-bottom: 1px solid grey;
+	display:none;
+	padding-bottom: 0.5rem;
+}
 nav#results{
 	margin-bottom:2rem;
 }
