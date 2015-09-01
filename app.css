@@ -65,9 +65,8 @@ div.container_body {
     width: 100rem;
 }
 #main_header{
-	
-		   background-image: linear-gradient(#0E286C, #344E92);
-		height: 6.4rem;
+	background-image: linear-gradient(#0E286C, #344E92);
+	height: 6.4rem;
 	border-top: 0.2rem solid grey;
 	width: 100%;
 	position: relative;
@@ -82,28 +81,27 @@ div.container_body {
 	background-repeat: no-repeat;
 	background-size: auto 5rem;
 	display: block;
-	background-position:1rem center;
-		
+	background-position:1rem center;	
 }
 #searchorExplore{
 	height: 4rem;
-	
 	padding:1rem;
-	
 	background-image: linear-gradient(#f1d804, #f17904);
-	
 }
 #searchorExplore >div{
-	
-	
 	padding-left: 1rem;
-position: relative;
-
-width: 60rem;
-float: left;
-	
+	position: relative;
+	width: 60rem;
+	float: left;	
 }
-
+#loading{
+	position: absolute;
+	height: 100%;
+	z-index: 99;
+	text-align: center;
+	background-color: white;
+	width: 100rem;
+}
 
 #searchorExplore >ul{
 	height:100%;
@@ -140,6 +138,29 @@ input#near{
 	width: 20rem;
 }
 
+nav#results{
+	margin-bottom:2rem;
+}
+nav#results li{
+	list-style-type: none;
+	padding-left:2rem;
+	padding-right:2rem;
+	position:relative;
+	line-height: 4rem;
+	border-bottom: 1px solid grey;
+}
+nav#results li > p{
+	font-size: 1rem;
+	font-weight:bold;
+	line-height:2rem;
+}
+nav#results li a{
+	display: block;
+}
 #searchorExplore >ul>li{
 	display:inline-block;
 }
+#results{	
+	clear:both;
+}
+
