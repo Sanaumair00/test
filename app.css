@@ -137,7 +137,6 @@ input#near{
 	margin-left:1rem;
 	width: 20rem;
 }
-
 nav#results{
 	margin-bottom:2rem;
 }
@@ -153,6 +152,7 @@ nav#results li > p{
 	font-size: 1rem;
 	font-weight:bold;
 	line-height:2rem;
+	width:43rem;
 }
 nav#results li a{
 	display: block;
@@ -163,4 +163,35 @@ nav#results li a{
 #results{	
 	clear:both;
 }
+#desc{
+	line-height: 4rem;
 
+font-weight: bold;
+color: #F00;
+font-size: 2rem;
+}
+div#tips{
+	
+position: absolute;
+top: 0px;
+right: 0px;
+width: 53rem;
+line-height: 2rem;
+font-size: 1.2rem;
+}
+.bold{
+	font-weight:bold;
+}
+#desc > p:first-child> span{
+		font-size:1.4rem;
+		margin-left:0.5rem;
+		color: black;
+	
+	
+}
+#desc > p:nth-child(2){
+	
+	color:black;
+	font-size:1.6rem;
+	
+}
