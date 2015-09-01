@@ -1,0 +1,145 @@
+
+/* #Reset & Basics (Inspired by E. Meyers)
+================================================== */
+html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 62.5%;
+    vertical-align: baseline; }
+    body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em,
+img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u,
+i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table,
+caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details,
+embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby,
+section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    font: inherit;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  article, aside, details, figcaption, figure, footer, header, hgroup, menu,
+nav, section {
+    display: block;
+}
+ 
+  blockquote, q {
+    quotes: none; }
+  blockquote:before,  q:before{
+    content: '';
+  }
+  blockquote:after,q:after {
+    content: '';
+  }
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+  b, strong {
+  font-weight: bold;
+  }
+
+/*******General******/
+
+body {
+    background: #fff;
+    font-family: Arial,sans-serif;
+    color: #404040;
+    -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+    /*-webkit-text-size-adjust: 100%;*/
+        margin: 0;
+        padding: 0;
+      font-size: 14px;
+      font-size: 1.4rem;
+     line-height:15px;
+    line-height:1.5rem;
+
+}
+div.container_body {
+    margin: 0px auto;
+    width: 100rem;
+}
+#main_header{
+	
+		   background-image: linear-gradient(#0E286C, #344E92);
+		height: 6.4rem;
+	border-top: 0.2rem solid grey;
+	width: 100%;
+	position: relative;
+	height:12rem;
+}
+#main_header > h1{
+	height:100%;
+}
+#main_header > h1 > a {
+    background-image: url("images/logo.png");
+	height: 100%;
+	background-repeat: no-repeat;
+	background-size: auto 5rem;
+	display: block;
+	background-position:1rem center;
+		
+}
+#searchorExplore{
+	height: 4rem;
+	
+	padding:1rem;
+	
+	background-image: linear-gradient(#f1d804, #f17904);
+	
+}
+#searchorExplore >div{
+	
+	
+	padding-left: 1rem;
+position: relative;
+
+width: 60rem;
+float: left;
+	
+}
+
+
+#searchorExplore >ul{
+	height:100%;
+	display:block;
+	list-style-type: number;
+	width:20rem;
+	float:left;
+
+}
+#searchorExplore >ul  a{
+	width:5rem;
+	height:3rem;
+	display:block;
+	line-height:3rem;
+	background-image: linear-gradient(#f12b04, #f10904);
+	text-decoration:none;
+	margin:0.5rem;
+	padding: 0 1rem;
+	color:white;
+}
+input#srchXplore{
+	
+	padding-left:1rem;
+	height:3.4rem;
+	width: 35rem;
+	
+	box-sizing:box-border;
+}
+input#near{
+	padding-left:1rem;
+	height:3.4rem;
+	box-sizing:box-border;
+	margin-left:1rem;
+	width: 20rem;
+}
+
+#searchorExplore >ul>li{
+	display:inline-block;
+}
