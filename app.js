@@ -1,8 +1,5 @@
 $(document).ready(function(){
-
-	
-	App.initApp();	
-
+App.initApp();
 });
 
 var App ={
@@ -13,7 +10,7 @@ var App ={
 		secret:"YMNU2MYPGGBTJZIEXASW01GP5K2YTWIJBXAWYCI2RQVDPALL"
 	},
 	version : "20150825",
-	locationLatLong : "",
+	locationLatLong : "40.7,-74",
 	flag: 0
 	
 };
@@ -46,7 +43,7 @@ var App ={
 		var generateUrl = getUrl("https://api.foursquare.com/v2/venues/");
 		$("#main-search-button").click(function(event){
 			event.preventDefault();
-			var query1= $("input#srchXplore").val();
+				var query1= $("input#srchXplore").val();
 				var nearplace1 =$("input#near").val();
 				
 				var generateUrl = getUrl("https://api.foursquare.com/v2/venues/");
@@ -83,21 +80,80 @@ var App ={
 					}
 				});
 		
-	
 			
 			//
+		});
+		$("#main-explore-button").click(function(event){
+			
+			event.preventDefault();
+			$("#loading").show();
+			var query1= $("input#srchXplore").val();
+			var nearplace1 =$("input#near").val();
+			
+			var getXploreUrl =generateUrl("explore",query1,nearplace1);
+			console.log(getXploreUrl);
+			var str ="";
+			$("ul#list").remove();
+			
+			
+			$.ajax({
+				
+				url:getXploreUrl,
+				
+				success: function(result){
+					setTimeout(function(){
+								$("#loading").hide();
+						},1000);
+						str+="<div id='desc'><p>"+ result.response["headerFullLocation"];
+						if(result.response["geocode"]!= undefined){
+							str+="<span>( "+result.response["geocode"]["displayString"]+" ) - </span>";
+						}
+							str+="<span>Total Results "+result.response["totalResults"]+"</span></p>";
+						
+					$.each( result.response.groups, function( i, value ) {
+						str+="<p id='desc'>"+value["type"]+"</p></div>";
+						$.each( value["items"], function( itr, val ) {
+							str+="<li>"+ val.venue.name;
+							if(val.tips!= undefined){
+								str+="<div id='tips'>";
+									$.each( val.tips, function( itrr, tipss ) {
+										
+											str+=tipss.text +"<span class='bold'> Name "+tipss.user.firstName;
+											if(tipss["likes"]!=undefined){
+												
+											str+=" ("+tipss["likes"].summary+") </span>";
+											}
+									
+									});
+								str+="</div>";
+							}
+							str+="<p>";
+							$.each( val.venue.location["formattedAddress"], function( itr2, val2 ) {
+								str+= val2+" ";
+							});
+							str+="</p></li>";
+						});
+					 
+					});
+					$("nav#results").html("<ul id='list'>"+str+"</ul>");
+				},
+				error: function(e){
+					alert("error");
+				}
+			});
 		});
 
 	
 	}
 	
-	
 
+
+	
+	
 
 		//alert(urlSubstr1);
 	
 	
 	
 }());
-
 
